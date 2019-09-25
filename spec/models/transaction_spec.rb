@@ -6,8 +6,8 @@ RSpec.describe Transaction, type: :model do
   end
 
   describe "Validations" do
-    describe "#type" do
-      it { should validate_presence_of(:type) }
+    describe "#transaction_type" do
+      it { should validate_presence_of(:transaction_type) }
     end
 
     describe "#amount" do

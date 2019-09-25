@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20190925155851) do
   end
 
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "type", null: false
+    t.string "transaction_type", null: false
     t.decimal "amount", precision: 10, null: false
     t.string "location", default: "Lagos, Nigeria", null: false
     t.bigint "user_id"
