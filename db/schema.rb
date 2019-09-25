@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20190925155851) do
     t.string "email", null: false
     t.decimal "account_number", precision: 10, null: false
     t.decimal "balance", precision: 10, default: "5000", null: false
-    t.decimal "password_digest", precision: 10, null: false
+    t.string "password_digest", null: false
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
