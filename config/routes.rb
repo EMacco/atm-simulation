@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
       namespace :transactions do
         patch :deposit, to: "deposit#update"
+        patch :withdraw, to: "withdraw#update"
       end
     end
   end
