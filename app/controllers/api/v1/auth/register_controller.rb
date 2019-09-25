@@ -3,8 +3,6 @@ module Api
     module Auth
       class RegisterController < Api::V1::BaseController
         def create
-          print "Password"
-          puts strip_whitespace(user_params)
           user = User.create!(strip_whitespace(user_params))
 
           if user
