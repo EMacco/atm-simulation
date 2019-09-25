@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   describe "Association" do
     it { should have_many(:transactions) }
-    it { should have_one(:login_attempt) }
+    it { should have_many(:login_attempts) }
   end
 
   describe "Validations" do

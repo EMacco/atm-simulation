@@ -7,10 +7,14 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false },
                     format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password_digest, presence: true, length: { minimum: 4 }
-  validates :account_number, :balance, :active, allow_nil: true, numericality: true
+  validates :account_number,
+            :balance,
+            :active,
+            allow_nil: true,
+            numericality: true
 
   has_many :transactions, dependent: :destroy
-  has_one :login_attempt, dependent: :destroy
+  has_many :login_attempts, dependent: :destroy
 
   private
 
