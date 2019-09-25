@@ -7,6 +7,9 @@ Rails.application.routes.draw do
         get :logged_in, to: "sessions#logged_in"
         post :login, to: "sessions#login"
       end
+      namespace :transactions do
+        patch :deposit, to: "deposit#update"
+      end
     end
   end
 
