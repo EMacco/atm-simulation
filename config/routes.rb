@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "static#index"
   namespace :api do
     namespace :v1 do
       resources :account_balance, only: [:index]
@@ -14,7 +15,8 @@ Rails.application.routes.draw do
         patch :withdraw, to: "withdraw#update"
       end
     end
+    match '*unmatched_route', :to => 'base#raise_not_found!', :via => :all
   end
 
-  match '*unmatched_route', :to => 'application#raise_not_found!', :via => :all
+  match '*unmatched_route', :to => 'static#index', :via => :all
 end
