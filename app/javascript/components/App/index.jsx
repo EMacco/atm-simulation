@@ -8,7 +8,7 @@ import Routes from './Routes';
 
 export const refreshPage = () => {
     if (localStorage.currentUser) {
-        store.dispatch(setCurrentUser(localStorage.currentUser));
+        store.dispatch(setCurrentUser(JSON.parse(localStorage.currentUser)));
     }
 };
 
