@@ -34,7 +34,6 @@ export const loginUser = userData => async dispatch => {
         toast.success('Login successful');
     } catch (error) {
         if (error.response) {
-            console.log("Error Message: ", error.response.data.errors);
             const errors = error.response.data.errors;
             if (errors.global) toast.error(errors.global);
             return dispatch({
@@ -51,4 +50,29 @@ export const logoutUser = history => dispatch => {
     dispatch({type: LOGOUT_USER });
     localStorage.removeItem('currentUser');
     if (history) history.push('/');
+};
+
+export const register = userData => async dispatch => {
+    try {
+        dispatch(isLoading(true));
+
+        const res = await axios.post('/auth/register', userData);
+        const user = res.data.payload.user;
+
+        localStorage.setItem('currentUser', JSON.stringify(user));
+
+        dispatch(setCurrentUser(user));
+        toast.success('Account created. Store Account number');
+    } catch (error) {
+        if (error.response) {
+            const errors = error.response.data.errors;
+            if (errors.global) toast.error(errors.global);
+            return dispatch({
+                type: SIGNIN_FAILURE,
+                payload: errors
+            });
+        }
+        dispatch(isLoading(false));
+        toast.error('Please check your network connection and try again');
+    }
 };
