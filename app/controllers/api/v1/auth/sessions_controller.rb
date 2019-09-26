@@ -15,7 +15,7 @@ module Api
           user = User.find_by(account_number: user_details["account_number"],
                               active: true)
           valid_user = user.try(:authenticate, user_details["password"])
-
+          
           if user && valid_user
             session[:user_id] = user.id
             reset_login_attempt user

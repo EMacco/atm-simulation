@@ -1,6 +1,8 @@
 import {
     SET_CURRENT_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    IS_LOADING,
+    SIGNIN_FAILURE
 } from "../actions/types";
 
 const initialState = {
@@ -25,6 +27,18 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isAuthenticated: false,
                 user: {},
+                loading: false
+            };
+        case IS_LOADING:
+            return {
+                ...state,
+                loading: action.payload,
+                errors: {}
+            };
+        case SIGNIN_FAILURE:
+            return {
+                ...state,
+                errors: action.payload,
                 loading: false
             };
         default:
