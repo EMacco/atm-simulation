@@ -15,12 +15,12 @@ class Home extends Component {
     };
 
     render() {
-        const {isAuthenticated} = this.props;
+        const {isAuthenticated, user} = this.props;
 
         if (!isAuthenticated) return <Redirect to="/auth"/>;
         return (
             <div>
-                This is the user dashboard
+                This is the user dashboard { user.account_number } <br />
                 <button onClick={this.logoutBtnClicked} className="bg-red-400 rounded ml-4 p-2">
                     Logout
                 </button>
@@ -35,7 +35,8 @@ Home.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
 });
 
 export default connect(mapStateToProps, {logoutUser})(Home);

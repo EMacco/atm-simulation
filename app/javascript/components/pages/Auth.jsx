@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
 import Login from '../layouts/Login';
+import Registration from '../layouts/Registration';
 
 
 class Auth extends Component {
@@ -34,19 +35,19 @@ class Auth extends Component {
                                     <div className="w-full mt-4">
                                         {
                                             loginPage ?
-                                                <Login isLoading={isLoading}/> : "This is the registration page"
+                                                <Login isLoading={isLoading}/> : <Registration isLoading={isLoading} />
                                         }
                                         <div className="text-center mt-4">
                                             {
                                                 loginPage ? (
                                                     <span
-                                                        className="no-underline hover:underline text-blue-dark text-xs"
+                                                        className="spanLink no-underline hover:underline text-blue-dark text-xs"
                                                         onClick={this.changePage}>
                                                     Don't have an account? Register
                                                 </span>
                                                 ) : (
                                                     <span
-                                                        className="no-underline hover:underline text-blue-dark text-xs"
+                                                        className="spanLink no-underline hover:underline text-blue-dark text-xs"
                                                         onClick={this.changePage}>
                                                     Already have an account? Login
                                                 </span>
