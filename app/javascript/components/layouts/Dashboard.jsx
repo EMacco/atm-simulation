@@ -23,9 +23,9 @@ class Dashboard extends Component {
         return (
             <div>
                 <NavBar logoutBtnClicked={this.logoutBtnClicked} />
-                <div className="container mx-auto flex">
+                <div className="container flex-wrap md:flex-no-wrap mx-auto flex">
                     <ProfileDetails {...user} />
-                    <div>
+                    <div className="w-full flex flex-wrap md:flex-no-wrap">
                         {this.props.children}
                     </div>
                 </div>

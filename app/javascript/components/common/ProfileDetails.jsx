@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 
-const addCommasToMoney = (money) => {
+export const addCommasToMoney = (money) => {
     return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
@@ -22,11 +22,11 @@ const ProfileDetails = ({first_name, last_name, email, account_number, balance})
                 <p className="mt-2 font-sans font-light "><span className="font-medium text-lg text-green-500">N{addCommasToMoney(balance)}</span></p>
             </div>
             <div className="flex justify-center pb-3 text-grey-dark">
-                <Link className="text-center mr-3 border-r pr-3 hover:text-blue-700 spanLink" to="/deposit">
+                <Link className="text-center mr-3 border-r pr-3 font-bold text-blue-700 hover:text-blue-800 spanLink" to="/">
                     <h2>+</h2>
                     <span>Deposit</span>
                 </Link>
-                <Link className="text-center hover:text-blue-700 spanLink" to="/withdraw">
+                <Link className="text-center text-blue-700 font-bold hover:text-blue-800 spanLink" to="/withdraw">
                     <h2>-</h2>
                     <span>Withdraw</span>
                 </Link>
