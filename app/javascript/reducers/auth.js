@@ -9,7 +9,7 @@ const initialState = {
     loading: false,
     user: {},
     errors: {},
-    isAuthenticated: false
+    isAuthenticated: false,
 };
 
 const authReducer = (state = initialState, action) => {
