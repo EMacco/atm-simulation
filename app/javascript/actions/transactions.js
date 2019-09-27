@@ -16,10 +16,10 @@ export const setReceipt = value => ({
     payload: value
 });
 
-export const depositMoney = transDetails => async dispatch => {
+export const performTransaction = (type, transDetails) => async dispatch => {
     try {
         dispatch(isLoading(true));
-        const res = await axios.patch('/transactions/deposit', transDetails);
+        const res = await axios.patch(`/transactions/${type}`, transDetails);
         const receipt = res.data.payload;
 
         localStorage.setItem('currentUser', JSON.stringify(receipt.user));
@@ -27,12 +27,12 @@ export const depositMoney = transDetails => async dispatch => {
         dispatch(setCurrentUser(receipt.user));
         toast.success('Transaction Successful');
     } catch (error) {
+        dispatch(isLoading(false));
         if (error.response) {
             const errors = error.response.data.errors;
             if (errors.global) toast.error(errors.global);
             return;
         }
-        dispatch(isLoading(false));
         toast.error('Please check your network connection and try again');
     }
 };

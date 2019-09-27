@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from "react-router-dom";
 
 export const addCommasToMoney = (money) => {
     return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-const ProfileDetails = ({first_name, last_name, email, account_number, balance}) => {
+const ProfileDetails = ({first_name, last_name, email, account_number, balance, changePage}) => {
     return (
         <div className="rounded overflow-hidden shadow max-w-xs my-3">
             <img src="https://i.imgur.com/dYcYQ7E.png" className="w-full" alt="Cover Image"/>
@@ -22,14 +21,16 @@ const ProfileDetails = ({first_name, last_name, email, account_number, balance})
                 <p className="mt-2 font-sans font-light "><span className="font-medium text-lg text-green-500">N{addCommasToMoney(balance)}</span></p>
             </div>
             <div className="flex justify-center pb-3 text-grey-dark">
-                <Link className="text-center mr-3 border-r pr-3 font-bold text-blue-700 hover:text-blue-800 spanLink" to="/">
+                <span className="text-center mr-3 border-r pr-3 font-bold text-blue-700 hover:text-blue-800 spanLink"
+                      onClick={() => {changePage('deposit')}}>
                     <h2>+</h2>
                     <span>Deposit</span>
-                </Link>
-                <Link className="text-center text-blue-700 font-bold hover:text-blue-800 spanLink" to="/withdraw">
+                </span>
+                <span className="text-center text-blue-700 font-bold hover:text-blue-800 spanLink"
+                      onClick={() => {changePage('withdraw')}}>
                     <h2>-</h2>
                     <span>Withdraw</span>
-                </Link>
+                </span>
             </div>
         </div>
     )
@@ -40,7 +41,8 @@ ProfileDetails.propTypes = {
     last_name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     account_number: PropTypes.number.isRequired,
-    balance: PropTypes.number.isRequired
+    balance: PropTypes.number.isRequired,
+    changePage: PropTypes.func.isRequired
 };
 
 export default ProfileDetails;
