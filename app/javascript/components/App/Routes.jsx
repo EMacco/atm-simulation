@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
-import Auth from "../pages/Auth";
+import Auth from "../layouts/Auth";
 
 
 const Routes = () => (
