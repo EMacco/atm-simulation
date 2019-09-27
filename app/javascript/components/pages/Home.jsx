@@ -4,35 +4,40 @@ import PropTypes from 'prop-types';
 import Dashboard from "../layouts/Dashboard";
 import Receipt from "../common/Receipt";
 import Button from "../common/Button";
-import {depositMoney} from "../../actions/transactions";
+import {performTransaction} from "../../actions/transactions";
 
 class Home extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {amount: 0}
+        this.state = {amount: 0, currentPage: 'deposit'};
     }
 
     textChange = (e) => {
         this.setState({[e.target.name]: e.target.value});
     };
 
-    depositMoney = e => {
+    changePage = pageName => {
+        this.setState({currentPage: pageName})
+    };
+
+    performTransaction = e => {
         e.preventDefault();
-        const {amount} = this.state;
-        const {depositMoney} = this.props;
-        depositMoney({amount});
+        const {amount, currentPage} = this.state;
+        const {performTransaction} = this.props;
+        performTransaction(currentPage, {amount});
     };
 
     render() {
-        const {amount} = this.state;
+        const {amount, currentPage} = this.state;
         const {isLoading, receipt} = this.props;
 
         return (
-            <Dashboard>
+            <Dashboard changePage={this.changePage}>
                 <div className="p-4 w-full">
-                    <h1 className="font-medium text-sm w-full mb-4">Make a Deposit</h1>
-                    <form className="w-full shadow p-8 rounded" onSubmit={this.depositMoney}>
+                    <h1 className="font-medium text-sm w-full mb-4">
+                        Make a { currentPage === 'deposit' ? "Deposit" : "Withdrawal"}</h1>
+                    <form className="w-full shadow p-8 rounded" onSubmit={this.performTransaction}>
                         <div className="flex flex-col">
                             <label htmlFor="amount"
                                    className="mb-1 uppercase text-grey-darker text-xs font-bold">Amount</label>
@@ -47,9 +52,13 @@ class Home extends Component {
                                         <Button text="Loading" enabled={false}/>
                                     ) : (
                                         amount <= 0 || amount === '' || amount === '0' ? (
-                                            <Button text="Deposit" enabled={false}/>
+                                            <Button text={
+                                                currentPage === 'deposit' ? "Deposit" : "Withdraw"
+                                            } enabled={false}/>
                                         ) : (
-                                            <Button text="Deposit"/>
+                                            <Button text={
+                                                currentPage === 'deposit' ? "Deposit" : "Withdraw"
+                                            }/>
                                         )
                                     )
                                 }
@@ -66,7 +75,7 @@ class Home extends Component {
 
 Home.propTypes = {
     receipt: PropTypes.object.isRequired,
-    depositMoney: PropTypes.func.isRequired
+    performTransaction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -74,4 +83,4 @@ const mapStateToProps = state => ({
     isLoading: state.transaction.loading
 });
 
-export default connect(mapStateToProps, {depositMoney})(Home);
+export default connect(mapStateToProps, {performTransaction})(Home);

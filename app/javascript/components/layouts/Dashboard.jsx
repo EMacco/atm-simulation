@@ -17,14 +17,14 @@ class Dashboard extends Component {
     };
 
     render() {
-        const {isAuthenticated, user} = this.props;
+        const {isAuthenticated, user, changePage} = this.props;
 
         if (!isAuthenticated) return <Redirect to="/auth"/>;
         return (
             <div>
                 <NavBar logoutBtnClicked={this.logoutBtnClicked} />
                 <div className="container flex-wrap md:flex-no-wrap mx-auto flex">
-                    <ProfileDetails {...user} />
+                    <ProfileDetails {...user} changePage={changePage} />
                     <div className="w-full flex flex-wrap md:flex-no-wrap">
                         {this.props.children}
                     </div>
@@ -36,7 +36,8 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    logoutUser: PropTypes.func.isRequired
+    logoutUser: PropTypes.func.isRequired,
+    changePage: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

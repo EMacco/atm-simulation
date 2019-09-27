@@ -30,7 +30,7 @@ module Api
           @current_user.save!
 
           success_response create_transaction @current_user,
-                                              "deposit",
+                                              "withdrawal",
                                               amount,
                                               details["location"]
         end
