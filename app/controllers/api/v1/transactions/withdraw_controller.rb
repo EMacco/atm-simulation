@@ -19,7 +19,7 @@ module Api
 
           unless @current_user.balance.positive?
             return error_response(global:
-                                      "insufficient balance")
+                                      "Insufficient balance")
           end
 
           unless (amount % 500).zero?

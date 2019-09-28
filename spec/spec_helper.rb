@@ -16,8 +16,10 @@
 require 'simplecov'
 
 SimpleCov.start "rails" do
-  add_filter "app/controllers/api/v1/transactions"
-  add_filter "app/controllers/api/v1/account_balance_controller"
+  add_filter "app/channels"
+  add_filter "app/jobs"
+  add_filter "app/mailers"
+  add_filter "app/controllers/static"
 end
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
