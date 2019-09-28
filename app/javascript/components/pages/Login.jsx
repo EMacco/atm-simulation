@@ -40,6 +40,7 @@ class Login extends Component {
                 <FormField placeholder={"Password"}
                            name={"password"}
                            value={password}
+                           type="password"
                            textChange={ this.textChange }/>
                 <div className="flex flex-col mt-8">
                     {
