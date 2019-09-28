@@ -86,4 +86,5 @@ RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
   config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
+  config.include AuthenticationHelper, type: :request
 end
