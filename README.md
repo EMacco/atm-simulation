@@ -21,8 +21,6 @@ This application was managed using [Pivotal Tracker](https://www.pivotaltracker.
 * [Redux](https://redux.js.org/) - a predictable state container for JS apps
 * [RSpec](https://rspec.info/) - a testing tool wrritten in Ruby to test Ruby
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
 
 ### Installation
 
