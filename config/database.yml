@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
   database: atm-simulation_production
-  username: atm-simulation
-  password: <%= ENV['ATM-SIMULATION_DATABASE_PASSWORD'] %>
+  pool: 5
+  timeout: 5000
